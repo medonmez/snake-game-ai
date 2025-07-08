@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WebSocket Test</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Connect to the Flask-SocketIO server
+            const socket = io('http://localhost:5000');
+
+            // Connection opened
+            socket.on('connect', () => {
+                console.log('Connected to server');
+                document.getElementById('status').textContent = 'Connected to server';
+                document.getElementById('status').style.color = 'green';
+            });
+
+            // Listen for connection response
+            socket.on('connection_response', (data) => {
+                console.log('Received connection response:', data);
+                document.getElementById('messages').innerHTML += `<p>Server response: ${JSON.stringify(data)}</p>`;
+            });
+
+            // Listen for AI decisions
+            socket.on('ai_decision', (data) => {
+                console.log('Received AI decision:', data);
+                document.getElementById('messages').innerHTML += `<p>AI Decision: ${JSON.stringify(data)}</p>`;
+            });
+
+            // Send test game state button
+            document.getElementById('sendTest').onclick = () => {
+                const testState = {
+                    snake_position: [[5, 5]],
+                    food_position: [10, 10],
+                    score: 0
+                };
+                socket.emit('game_state', testState);
+                document.getElementById('messages').innerHTML += `<p>Sent test game state</p>`;
+            };
+        });
+    </script>
+</head>
+<body>
+    <h2>WebSocket Test</h2>
+    <div id="status" style="font-weight: bold; color: red;">Not connected</div>
+    <br>
+    <button id="sendTest">Send Test Game State</button>
+    <div id="messages"></div>
+</body>
+</html> 

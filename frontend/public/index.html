@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Snake Game</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
+</head>
+<body class="dark-mode">
+    <div class="game-container">
+        <div class="game-section">
+            <div class="controls">
+                <button id="playButton" class="button">Play Game</button>
+                <button id="aiModeToggle" class="button">AI Mode: Off</button>
+                <button id="darkModeToggle" class="button">Light Mode</button>
+                <button id="speedToggle" class="button">Fast Mode: Off</button>
+            </div>
+            <div class="game-wrapper">
+                <canvas id="gameCanvas" width="600" height="600"></canvas>
+                <div id="gameOverOverlay" class="game-over-overlay hidden">
+                    <h1>Game Over!</h1>
+                    <p>Score: <span id="finalScore">0</span></p>
+                    <p class="high-score">High Score: <span id="overlayHighScore">0</span></p>
+                    <button id="restartButton" class="button">Play Again</button>
+                </div>
+            </div>
+            <div class="score-board">
+                <h2>Score: <span id="score">0</span></h2>
+                <h3>High Score: <span id="highScore">0</span></h3>
+            </div>
+        </div>
+        <div class="dashboard-section">
+            <h2>AI Training Dashboard</h2>
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <label>Games Played</label>
+                    <span id="gamesPlayed">0</span>
+                </div>
+                <div class="stat-box">
+                    <label>AI High Score</label>
+                    <span id="aiHighScore">0</span>
+                </div>
+                <div class="stat-box">
+                    <label>Average Score</label>
+                    <span id="averageScore">0.00</span>
+                </div>
+                <div class="stat-box">
+                    <label>Exploration Rate</label>
+                    <span id="explorationRate">0.100</span>
+                </div>
+                <div class="stat-box full-width">
+                    <label>Total Reward</label>
+                    <span id="totalReward">0.00</span>
+                </div>
+            </div>
+            <div class="charts-grid">
+                <div class="chart-container">
+                    <h3>Score History</h3>
+                    <canvas id="scoreChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h3>Reward History</h3>
+                    <canvas id="rewardChart"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="arrow-keys">
+            <div class="arrow-key up"><i class="fas fa-arrow-up"></i></div>
+            <div class="arrow-key left"><i class="fas fa-arrow-left"></i></div>
+            <div class="arrow-key down"><i class="fas fa-arrow-down"></i></div>
+            <div class="arrow-key right"><i class="fas fa-arrow-right"></i></div>
+        </div>
+    </div>
+    <script src="game.js"></script>
+</body>
+</html> 

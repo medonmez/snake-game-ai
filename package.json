@@ -1,0 +1,12 @@
+{
+  "name": "snake-game-ai",
+  "version": "1.0.0",
+  "description": "A modern implementation of the classic Snake game with an AI learning component that learns to play through reinforcement learning.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
